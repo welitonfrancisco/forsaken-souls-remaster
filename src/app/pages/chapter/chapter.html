@@ -1,0 +1,98 @@
+<div class="page chapter" [style.--reader-size.px]="fontSize()">
+  <!-- barra de progresso da leitura -->
+  <div class="progress" aria-hidden="true">
+    <span [style.width.%]="progress()"></span>
+  </div>
+
+  <!-- ================= CABEÇALHO DO CAPÍTULO ================= -->
+  <header class="chapter-head">
+    <p class="kicker">Capítulo 0{{ chapter.id }}</p>
+    <h1>{{ chapter.title }}</h1>
+    <p class="subtitle">{{ chapter.subtitle }}</p>
+
+    <div class="meta">
+      <span>{{ wordCount() }} palavras</span>
+      <i aria-hidden="true"></i>
+      <span>{{ readingTime() }} min de leitura</span>
+      <i aria-hidden="true"></i>
+      <span>{{ chapter.pages }} páginas no PDF</span>
+    </div>
+
+    <div class="ornament" aria-hidden="true"><span></span>✦<span></span></div>
+  </header>
+
+  <!-- ================= FERRAMENTAS ================= -->
+  <div class="toolbar">
+    <div class="font-ctrl" role="group" aria-label="Tamanho do texto">
+      <button
+        type="button"
+        class="ctrl-btn"
+        (click)="smaller()"
+        [disabled]="fontIndex() === 0"
+        aria-label="Diminuir tamanho do texto"
+      >
+        A−
+      </button>
+      <span class="font-val" aria-live="polite">{{ fontSize() }}px</span>
+      <button
+        type="button"
+        class="ctrl-btn"
+        (click)="larger()"
+        [disabled]="fontIndex() === sizes.length - 1"
+        aria-label="Aumentar tamanho do texto"
+      >
+        A+
+      </button>
+    </div>
+
+    <a class="pdf-link" [href]="chapter.pdf" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linejoin="round"
+        />
+        <path d="M14 3v5h5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
+      </svg>
+      PDF original
+    </a>
+  </div>
+
+  <!-- ================= TEXTO ================= -->
+  <article class="reader">
+    @for (p of chapter.paragraphs; track $index; let first = $first) {
+      <p [class.first]="first">{{ p }}</p>
+    }
+  </article>
+
+  <!-- ================= NAVEGAÇÃO ================= -->
+  <nav class="chapter-nav" aria-label="Navegação entre capítulos">
+    @if (prev(); as p) {
+      <a class="nav-card prev" [routerLink]="['/', p.slug]">
+        <span class="nav-dir">← Anterior</span>
+        <span class="nav-title">Capítulo 0{{ p.id }} · {{ p.subtitle }}</span>
+      </a>
+    } @else {
+      <span class="nav-card placeholder" aria-hidden="true"></span>
+    }
+
+    @if (next(); as n) {
+      <a class="nav-card next" [routerLink]="['/', n.slug]">
+        <span class="nav-dir">Próximo →</span>
+        <span class="nav-title">Capítulo 0{{ n.id }} · {{ n.subtitle }}</span>
+      </a>
+    } @else {
+      <span class="nav-card placeholder" aria-hidden="true"></span>
+    }
+  </nav>
+
+  <!-- ================= VOLTAR AO TOPO ================= -->
+  @if (progress() > 15) {
+    <button type="button" class="to-top" (click)="scrollTop()" aria-label="Voltar ao topo">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 19V5M6 11l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  }
+</div>

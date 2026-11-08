@@ -1,0 +1,135 @@
+/* ============================================================
+   Forsaken Souls: ReMaster — tema cinza escuro + roxo
+   ============================================================ */
+:root {
+  --bg: #121216;
+  --bg-deep: #0d0d11;
+  --bg-soft: #17171e;
+  --surface: #1d1d26;
+  --surface-2: #24242f;
+  --border: #2e2e3c;
+  --border-soft: #262631;
+
+  --text: #e9e9f2;
+  --text-dim: #a3a3b8;
+  --text-faint: #71718a;
+
+  --purple: #8b5cf6;
+  --purple-light: #a78bfa;
+  --purple-bright: #c084fc;
+  --purple-deep: #6d28d9;
+  --purple-glow: rgba(139, 92, 246, 0.35);
+  --purple-soft: rgba(139, 92, 246, 0.12);
+  --grad: linear-gradient(135deg, #7c3aed 0%, #a855f7 55%, #c084fc 100%);
+
+  --font-display: 'Cinzel', 'Georgia', serif;
+  --font-ui: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-read: 'Lora', 'Georgia', serif;
+
+  --radius: 14px;
+  --radius-lg: 20px;
+  --header-h: 66px;
+  --shadow: 0 18px 45px -18px rgba(0, 0, 0, 0.75);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-ui);
+  color: var(--text);
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(720px 420px at 12% -8%, rgba(124, 58, 237, 0.22), transparent 65%),
+    radial-gradient(640px 380px at 92% 4%, rgba(168, 85, 247, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 50% 110%, rgba(109, 40, 217, 0.14), transparent 70%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.45);
+  color: #fff;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: #34344a;
+  border-radius: 99px;
+  border: 3px solid var(--bg-deep);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-deep);
+}
+* {
+  scrollbar-color: #34344a var(--bg-deep);
+  scrollbar-width: thin;
+}
+
+a {
+  color: var(--purple-light);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  line-height: 1.18;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--purple-light);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* animação padrão de entrada das páginas */
+.page {
+  animation: page-in 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

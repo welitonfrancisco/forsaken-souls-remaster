@@ -1,0 +1,28 @@
+<header class="header">
+  <div class="header-inner">
+    <a routerLink="/" class="brand" aria-label="Forsaken Souls: ReMaster — página inicial">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none">
+          <defs>
+            <linearGradient id="mark-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop stop-color="#c084fc" />
+              <stop offset="1" stop-color="#7c3aed" />
+            </linearGradient>
+          </defs>
+          <path d="M16 1.8 29.4 16 16 30.2 2.6 16Z" stroke="url(#mark-grad)" stroke-width="1.6" opacity=".75" />
+          <path d="M16 7.6 22.8 16 16 24.4 9.2 16Z" fill="url(#mark-grad)" />
+        </svg>
+      </span>
+      <span class="brand-text">Forsaken Souls<span class="brand-colon">:</span><em>&nbsp;ReMaster</em></span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação de capítulos">
+      @for (c of chapters; track c.id) {
+        <a class="nav-btn" [routerLink]="['/', c.slug]" routerLinkActive="active">
+          <span class="nav-num">0{{ c.id }}</span>
+          <span class="nav-label">{{ c.title }}</span>
+        </a>
+      }
+    </nav>
+  </div>
+</header>

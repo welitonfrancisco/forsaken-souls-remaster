@@ -1,0 +1,77 @@
+<div class="page home">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="rune">✦</span>
+    </div>
+
+    <p class="kicker">Fantasia sombria · Romance serial</p>
+
+    <h1>
+      Forsaken Souls<span class="colon">:</span>
+      <span class="grad">ReMaster</span>
+    </h1>
+
+    <p class="lede">
+      Um garoto, uma mesa de RPG e um dado que nunca deveria ter sido lançado.
+      Quando o silêncio engole o mundo, Liam acorda em outro — e descobre que
+      sobreviver é só o começo da conta a pagar.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" [routerLink]="['/', chapters[0].slug]">
+        Começar a ler
+        <span aria-hidden="true">→</span>
+      </a>
+      <a class="btn btn-ghost" href="#capitulos">Escolher capítulo</a>
+    </div>
+
+    <dl class="stats">
+      <div class="stat">
+        <dt>Capítulos</dt>
+        <dd>{{ chapters.length }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Páginas de história</dt>
+        <dd>{{ totalPages }}</dd>
+      </div>
+      <div class="stat">
+        <dt>Leitura estimada</dt>
+        <dd>~{{ readingTime }} min</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ================= CAPÍTULOS ================= -->
+  <section class="chapters" id="capitulos">
+    <header class="section-head">
+      <p class="section-kicker">Índice</p>
+      <h2>Escolha um capítulo</h2>
+      <p class="section-sub">
+        Cada capítulo traz o conteúdo completo do PDF original em um formato
+        confortável de leitura — com controle de tamanho de texto.
+      </p>
+    </header>
+
+    <div class="grid">
+      @for (c of chapters; track c.id) {
+        <a class="card" [routerLink]="['/', c.slug]">
+          <span class="card-ghost" aria-hidden="true">{{ c.id }}</span>
+          <span class="card-num">Capítulo 0{{ c.id }}</span>
+          <h3>{{ c.title }}</h3>
+          <p class="card-sub">{{ c.subtitle }}</p>
+          <p class="card-excerpt">{{ c.paragraphs[0] | slice: 0 : 130 }}…</p>
+          <span class="card-meta">{{ c.pages }} páginas · {{ c.paragraphs.length }} parágrafos</span>
+          <span class="card-cta">
+            Ler agora
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+      }
+    </div>
+  </section>
+</div>
